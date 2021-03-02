@@ -13,11 +13,6 @@ const ImageItemTests = [
 	</div>,
 	<div style={{height: '100%'}}>
 		<div style={style}>
-			<ImageItem src={img}>caption</ImageItem>
-		</div>
-	</div>,
-	<div style={{height: '100%'}}>
-		<div style={style}>
 			<ImageItem src={img} orientation="horizontal">caption</ImageItem>
 		</div>
 	</div>,

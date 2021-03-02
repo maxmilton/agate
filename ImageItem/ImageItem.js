@@ -100,8 +100,7 @@ const ImageItemBase = kind({
 		 * @public
 		 */
 		src: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-		sizing: PropTypes.oneOf(['fit', 'fill', 'none']),
-		skin: PropTypes.string
+		sizing: PropTypes.oneOf(['fit', 'fill', 'none'])
 	},
 
 	defaultProps: {
@@ -116,13 +115,12 @@ const ImageItemBase = kind({
 	},
 
 	computed: {
-		className: ({captionPosition, styler, sizing}) => styler.append({captionOverlay: captionPosition === 'overlay'}, sizing),
-		imageComponentSizing: ({orientation, skin}) => orientation === 'horizontal' && skin === 'silicon' ? 'none' : 'fill'
+		className: ({captionPosition, styler}) => styler.append({captionOverlay: captionPosition === 'overlay'})
 	},
 
-	render: ({captionPosition, children, css, disabled, imageComponentSizing, orientation, skin, src, ...rest}) => {
+	render: ({captionPosition, children, css, disabled, orientation, src, ...rest}) => {
 		const [Component, marqueeProps] = (children && (orientation === 'horizontal' || captionPosition === 'below')) ? [MarqueeImageItem, {
-			alignment: skin === 'silicon' && orientation === 'horizontal' ? 'left' : 'center'
+			alignment: 'center'
 		}] : [UiImageItem, null];
 
 		delete rest.sizing;
@@ -134,7 +132,7 @@ const ImageItemBase = kind({
 				aria-disabled={disabled}
 				css={css}
 				disabled={disabled}
-				imageComponent={<ImageBase sizing={imageComponentSizing}/>}
+				imageComponent={ImageBase}
 				orientation={orientation}
 				src={src}
 			>
@@ -156,7 +154,7 @@ const ImageItemBase = kind({
  */
 const ImageItemDecorator = compose(
 	MarqueeController({marqueeOnFocus: true}),
-	Skinnable({prop: 'skin'}),
+	Skinnable,
 	Spottable
 );
 
