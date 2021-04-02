@@ -124,50 +124,38 @@
 		}
 
 		&.centered {
-			// override Marquee's alignment.
-			.marquee {
-				text-align: center;
-			}
-
 			.itemContent {
-				max-width: 100%;
+				max-width: fit-content;
 
 				&.labelAfter,
 				&.labelBefore {
 					.content {
-						min-width: @agate-item-content-width;
 						max-width: @agate-item-content-width;
 					}
 					.label {
 						max-width: @agate-item-label-max-width;
 					}
 				}
+			}
 
-				&.labelAfter {
-					.content {
-						.marquee {
-							text-align: right;
-						}
-					}
-					.label {
-						.marquee {
-							text-align: left;
-						}
-					}
-				}
+			.slotAfter {
+				position: absolute;
+				right: 0;
 
-				&.labelBefore {
-					.content {
-						.marquee {
-							text-align: left;
-						}
-					}
-					.label {
-						.marquee {
-							text-align: right;
-						}
-					}
-				}
+				.enact-locale-rtl({
+					right: initial;
+					left: 0;
+				});
+			}
+
+			.slotBefore {
+				position: absolute;
+				left: 0;
+
+				.enact-locale-rtl({
+					left: initial;
+					right: 0;
+				});
 			}
 
 			&.inline {

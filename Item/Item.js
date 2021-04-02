@@ -20,13 +20,10 @@ import Slottable from '@enact/ui/Slottable';
 import PropTypes from 'prop-types';
 import compose from 'ramda/src/compose';
 
-import {MarqueeController, MarqueeDecorator} from '../Marquee';
+import {Marquee, MarqueeController} from '../Marquee';
 import Skinnable from '../Skinnable';
 
 import componentCss from './Item.module.less';
-
-const Marquee = MarqueeDecorator({className: componentCss.marquee}, 'div');
-
 /**
  * Renders the Item content.
  *
