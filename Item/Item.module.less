@@ -136,26 +136,34 @@
 						max-width: @agate-item-label-max-width;
 					}
 				}
+
+				&.labelAbove,
+				&.labelBelow {
+					.content {
+						max-width: 100%;
+					}
+					.label {
+						max-width: 100%;
+					}
+				}
+			}
+
+			&.slotAfter {
+				padding-right: 2 * @agate-item-side-outset;
+			}
+
+			&.slotBefore {
+				padding-left: 2 * @agate-item-side-outset;
 			}
 
 			.slotAfter {
 				position: absolute;
-				right: 0;
-
-				.enact-locale-rtl({
-					right: initial;
-					left: 0;
-				});
+				.position-start-end(auto, @agate-item-side-outset);
 			}
 
 			.slotBefore {
 				position: absolute;
-				left: 0;
-
-				.enact-locale-rtl({
-					left: initial;
-					right: 0;
-				});
+				.position-start-end(@agate-item-side-outset, auto);
 			}
 
 			&.inline {

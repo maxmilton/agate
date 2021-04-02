@@ -108,7 +108,6 @@ const ItemContent = kind({
 			labelBefore: labelPosition === 'before',
 			labelBelow: labelPosition === 'below'
 		}),
-
 		orientation: ({labelPosition}) => {
 			return (labelPosition === 'above' || labelPosition === 'below') ? 'vertical' : 'horizontal';
 		}
@@ -116,7 +115,6 @@ const ItemContent = kind({
 
 	// eslint-disable-next-line enact/prop-types
 	render: ({centered, content, css, marqueeOn, label, labelPosition, orientation, styler, ...rest}) => {
-		delete rest.labelPosition;
 
 		if (!label) {
 			return (
@@ -125,9 +123,12 @@ const ItemContent = kind({
 				</Cell>
 			);
 		} else {
+			const verticalAlign = (labelPosition === 'before' || labelPosition === 'after') ? 'center' : 'unset';
+			const contentAlign = centered ? 'center center' : `${verticalAlign} unset`;
+
 			return (
 				<Cell {...rest}>
-					<Layout align={labelPosition === 'before' || labelPosition === 'after' ? 'center' : null} orientation={orientation}>
+					<Layout align={contentAlign} orientation={orientation}>
 						<Cell component={Marquee} className={css.content} marqueeOn={marqueeOn} shrink={orientation === 'vertical' || centered}>
 							{content}
 						</Cell>
@@ -280,11 +281,13 @@ const ItemBase = kind({
 	},
 
 	computed: {
-		className: ({centered, label, selected, size, styler}) => styler.append(
+		className: ({centered, label, selected, size, slotAfter, slotBefore, styler}) => styler.append(
 			{
 				hasLabel: label != null,
 				selected,
-				centered
+				centered,
+				slotAfter,
+				slotBefore
 			},
 			size
 		),
