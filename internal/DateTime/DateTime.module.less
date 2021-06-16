@@ -12,16 +12,16 @@
 	&::before {
 		content: "";
 		position: absolute;
-		width: 95%;
 		left: 50%;
 		transform: translateX(-50%);
 	}
 
 	.applySkins({
 		&::before {
-			height: @agate-button-height;
 			background-image: @agate-datetimepicker-active-container-bg-image;
 			background-color: @agate-datetimepicker-active-container-bg-color;
+			height: @agate-datetimepicker-active-height;
+			width: @agate-datetimepicker-active-width;
 		}
 	});
 

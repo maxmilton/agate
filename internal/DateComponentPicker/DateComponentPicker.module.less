@@ -11,6 +11,8 @@
 	position: relative;
 
 	.applySkins({
+		.padding-start-end(@agate-datetimepicker-picker-padding);
+
 		.item,
 		.itemDecrement,
 		.itemIncrement {
@@ -23,7 +25,8 @@
 		}
 
 		.focusBackground {
-			height: 0;
+			left: 10%;
+			width: calc(80% + @agate-picker-padding / 2);
 		}
 
 		&::before {
